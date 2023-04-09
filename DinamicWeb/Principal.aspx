@@ -45,7 +45,7 @@
                 <div class="card-body">
                     <div class="d-inline-flex">
                         <div class="col-sm-4">
-                            <i class="fas fa-user icono" ></i>
+                            <i class="fas fa-shop icono" ></i>
                         </div>
                         <div class="col-sm-8 tituloCard">
                             <h4>Tercer <br /> Formulario</h4>
