@@ -79,6 +79,7 @@
     <Content Include="asset\bootstrap-5.3.0\js\bootstrap.min.js" />
     <Content Include="asset\bootstrap-5.3.0\js\popover.js" />
     <Content Include="asset\CSS\Login.css" />
+    <Content Include="asset\CSS\Principal.css" />
     <Content Include="asset\Fontawesome\css\all.min.css" />
     <Content Include="asset\image\1523210170727.png" />
     <Content Include="asset\image\LoginTop.png" />

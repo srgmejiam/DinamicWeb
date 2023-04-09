@@ -13,5 +13,25 @@ namespace DinamicWeb
         {
 
         }
+
+        protected void lnkFormulario_1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkFormulario_2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkFormulario_3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkFormulario_4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
