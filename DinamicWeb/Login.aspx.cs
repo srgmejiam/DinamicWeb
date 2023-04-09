@@ -8,6 +8,7 @@ using EL;
 using BL;
 using static EL.Enums;
 using System.Text;
+using Utilidades;
 
 namespace DinamicWeb
 {
@@ -50,7 +51,7 @@ namespace DinamicWeb
         }
         private bool ValidarAcceso()
         {
-            if(string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtUsuario.Text))
+            if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
                 Mensaje("Ingrese el usuario", eMessage.Alerta);
                 return false;
@@ -61,67 +62,62 @@ namespace DinamicWeb
                 Mensaje("Ingrese la contraseña", eMessage.Alerta);
                 return false;
             }
-            if(!BL_Usuarios.ExisteUserName(txtUsuario.Text))
+            if (!BL_Usuarios.ExisteUserName(txtUsuario.Text))
             {
                 Mensaje("Credenciales incorrectas", eMessage.Alerta);
                 return false;
             }
-
-            if(BL_Usuarios.VerificarCuentaBloqueada(txtUsuario.Text))
+            if (BL_Usuarios.VerificarCuentaBloqueada(txtUsuario.Text))
             {
-                Mensaje("Su cuenta a sido bloqueada por multiples intentos fallidos de iniciar sesión.", eMessage.Error);
+                Mensaje("Su cuenta ha sido bloqueada por multiples intentos fallidos de iniciar sesión", eMessage.Error);
                 return false;
             }
-
-            byte[] Pass = BL_Usuarios.Encrypt(txtPassword.Text);
-            if (!BL_Usuarios.ValidarCredenciales(txtUsuario.Text,Pass))
+            byte[] Password = BL_Usuarios.Encrypt(txtPassword.Text);
+            if (!BL_Usuarios.ValidarCredenciales(txtUsuario.Text, Password))
             {
-                Mensaje(Justify("Credenciales incorrectas, si supera 3 intentos fallidos de inicio de sesión, su cuenta será bloqueada"), eMessage.Alerta,"",true);
                 Usuarios User = BL_Usuarios.ExisteUsuario_x_UserName(txtUsuario.Text);
-                if(User.IntentosFallidos >= 2)
+                if (BL_Usuarios.CatidadIntentosFallidos(txtUsuario.Text) >= 2)
                 {
-                    BL_Usuarios.BloquearCuentaUsuario(User.IdUsuario,true,User.IdUsuario);
-          
+                    BL_Usuarios.BloquearCuentaUsuario(User.IdUsuario, true, User.IdUsuario);
+                    Mensaje(Justify("La cuenta fue bloqueada por multiples intentos fallidos de iniciar sesión. Por favor comuniquese con un administrador del sistema."), eMessage.Error, "", true);
                 }
-                
-                if(User!= null)
+                if (User != null)
                 {
                     BL_Usuarios.SumarIntentosFallido(User.IdUsuario);
                 }
-                return false;               
+                Mensaje(Justify("Credenciales incorrectas, si supera 3 intentos fallidos de inicio de sesión, su cuenta será bloqueada"), eMessage.Alerta, "", true);
+                return false;
             }
 
-            Usuarios UserVerificado = BL_Usuarios.ExisteUsuario_x_UserName(txtUsuario.Text);
-            if(UserVerificado!= null)
+            Usuarios UsuarioAutenticado = BL_Usuarios.ExisteUsuario_x_UserName(txtUsuario.Text);
+            if (UsuarioAutenticado != null)
             {
-                if (UserVerificado.IntentosFallidos > 0)
+                if (UsuarioAutenticado.IntentosFallidos > 0)
                 {
-                    BL_Usuarios.RestablecerIntentosFallido(UserVerificado.IdUsuario, UserVerificado.IdUsuario);
-                }   
+                    BL_Usuarios.RestablecerIntentosFallido(UsuarioAutenticado.IdUsuario, UsuarioAutenticado.IdUsuario);
+                }
 
-                Session["IdUsuario"] = UserVerificado.IdUsuario;
-                Session["IdRol"] = UserVerificado.IdRol;
-                Session["NombreCompleto"] = UserVerificado.NombreCompleto;
-                Session["Correo"] = UserVerificado.Correo;
-                Session["UserName"] = UserVerificado.UserName;
+                if(!(UsuarioAutenticado.IdRol > 0))
+                {
+                    Mensaje("Estimado usuario usted no tiene ul rol asignado en el sistema, por favor comuniquese con un administrador.", eMessage.Error);
+                    return false;
+                }
+
+                Session["IdUsuarioGl"] = UsuarioAutenticado.IdUsuario;
+                Session["IdRolGl"] = UsuarioAutenticado.IdRol;
                 //Redireccionar
                 Response.Redirect("~/Principal.aspx");
-            }  
-
-            return true;    
+            }
+            return true;
         }
         #endregion
 
         #region Evento de los Controles
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (ValidarAcceso())
-            {
-
-            }
+            ValidarAcceso();
         }
         #endregion
-
 
     }
 }

@@ -101,7 +101,7 @@ namespace DAL
             using (BDDinamicWeb bd = new BDDinamicWeb())
             {
                 var Registro = bd.Usuarios.Find(IdRegistro);
-                Registro.IntentosFallidos = Convert.ToByte(Registro.IntentosFallidos + 1);
+                Registro.IntentosFallidos = Convert.ToInt16(Registro.IntentosFallidos + 1);
                 return bd.SaveChanges() > 0;
             }
         }
@@ -160,6 +160,13 @@ namespace DAL
                 return bd.Usuarios.
                     Where(a => a.UserName.ToLower() == UserName.ToLower() 
                     && a.Bloqueado).Count() > 0;
+            }
+        }
+        public static short CatidadIntentosFallidos(string UserName)
+        {
+            using (BDDinamicWeb bd = new BDDinamicWeb())
+            {
+                return bd.Usuarios.Where(a => a.UserName.ToLower() == UserName.ToLower()).SingleOrDefault().IntentosFallidos;
             }
         }
     }

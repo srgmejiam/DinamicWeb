@@ -7,24 +7,66 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Dinamic-Web</title>
     <%-- Referencias CSS --%>
-
-
-    <link href="asset/bootstrap-5.2.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="asset/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="asset/Fontawesome/css/all.min.css" rel="stylesheet" />
     <link href="asset/SweeAlert/sweetalert.min.css" rel="stylesheet" />
+
+    <%-- Referencias JavaScript --%>
+    <script src="asset/JQuery/jquery.min.js"></script>            
+    <script src="asset/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="asset/bootstrap-5.3.0/js/bootstrap.min.js"></script>
+    <script src="asset/SweeAlert/sweetalert.all.min.js"></script>
+    <script src="asset/SweeAlert/sweetAlertStyle.js"></script>
 </head>
 <body>
     <form id="frmSiteMaster" runat="server">
+        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+            <div class="container-fluid">
+                <asp:LinkButton Text="Dinamic-Web" runat="server" CssClass="navbar-brand" ID="lnkNombreSitio" OnClick="lnkNombreSitio_Click"/>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <asp:LinkButton Text="Inicio" CssClass="nav-link active" aria-current="Inicio" runat="server" ID="lnkInicio" OnClick="lnkInicio_Click"/>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Formularios
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <asp:LinkButton Text="Formulario 1" runat="server" CssClass="dropdown-item" ID="lnkFormulario_1" OnClick="lnkFormulario_1_Click" />
+                                </li>
+
+                                <li>
+                                    <asp:LinkButton Text="Formulario 2" runat="server" CssClass="dropdown-item" ID="lnkFormulario_2" OnClick="lnkFormulario_2_Click" />
+                                </li>
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+                                <li>
+                                    <asp:LinkButton Text="Formulario 3" runat="server" CssClass="dropdown-item" ID="lnkFormulario_3" OnClick="lnkFormulario_3_Click" />
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            <%-- Aquí se renderizan los Formularios --%>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+                <%-- Aquí se renderizan los formularios --%>
             </asp:ContentPlaceHolder>
         </div>
     </form>
-    <%-- Referencias JS --%>
-    <script src="asset/JQuery/jquery.min.js"></script>
-    <script src="asset/bootstrap-5.2.0/js/bootstrap.min.js"></script>
-    <script src="asset/SweeAlert/sweetalert.all.min.js"></script>
-    <script src="asset/SweeAlert/sweetAlertStyle.js"></script>
 </body>
 </html>

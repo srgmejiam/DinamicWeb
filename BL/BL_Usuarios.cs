@@ -75,6 +75,10 @@ namespace BL
         {
             return DAL_Usuarios.VerificarCuentaBloqueada(UserName);
         }
+        public static short CatidadIntentosFallidos(string UserName)
+        {
+            return DAL_Usuarios.CatidadIntentosFallidos(UserName);
+        }
 
     }
 }

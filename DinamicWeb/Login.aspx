@@ -7,10 +7,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Dinamic-Web</title>
     <%-- Referencias CSS --%>
-    <link href="asset/bootstrap-5.2.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="asset/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="asset/Fontawesome/css/all.min.css" rel="stylesheet" />
     <link href="asset/SweeAlert/sweetalert.min.css" rel="stylesheet" />
     <link href="asset/CSS/Login.css" rel="stylesheet" />
+     <%-- Referencias JS --%>
+    <script src="asset/SweeAlert/sweetalert.all.min.js"></script>
+    <script src="asset/SweeAlert/sweetAlertStyle.js"></script>
 </head>
 <body>
     <form id="frmLogin" runat="server">
@@ -66,10 +69,6 @@
 
 
     </form>
-    <%-- Referencias JS --%>
-    <script src="asset/JQuery/jquery.min.js"></script>
-    <script src="asset/bootstrap-5.2.0/js/bootstrap.min.js"></script>
-    <script src="asset/SweeAlert/sweetalert.all.min.js"></script>
-    <script src="asset/SweeAlert/sweetAlertStyle.js"></script>
+   
 </body>
 </html>
