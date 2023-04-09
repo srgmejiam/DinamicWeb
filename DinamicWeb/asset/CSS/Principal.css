@@ -23,7 +23,7 @@
 }
 
 .icono {
-    font-size: 4rem;
+    font-size: 3rem;
     margin-right: 10px;
 }
 
@@ -31,9 +31,10 @@
     width: 100% !important;
 }
 
-@media screen and (min-width:770px) and (max-width:945px) {
+@media screen and (min-width:765px) and (max-width:945px) {
     .d-inline-flex {
         display: block !important;
+        text-align:center;
     }
 
         .d-inline-flex > div {
