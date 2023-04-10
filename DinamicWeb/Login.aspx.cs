@@ -16,10 +16,20 @@ namespace DinamicWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                AbandonarSesion();
+            }
         }
 
         #region Metodos y Funciones
+        private void AbandonarSesion()
+        {
+            Session.Abandon();
+            Session.RemoveAll();
+            HttpCookie CookieSesion = new HttpCookie("ASP.NET_SessionId", "");
+            Response.Cookies.Add(CookieSesion);
+        }
         private void Mensaje(string Message, eMessage tipoMensaje, string Encabezado = "", bool Html = false, bool Fondo = false, bool returnLogin = false, string UrlReturn = "", bool CerrarClick = true)
         {
             //icon -->      success,warning, error,  info
@@ -97,7 +107,7 @@ namespace DinamicWeb
                     BL_Usuarios.RestablecerIntentosFallido(UsuarioAutenticado.IdUsuario, UsuarioAutenticado.IdUsuario);
                 }
 
-                if(!(UsuarioAutenticado.IdRol > 0))
+                if (!(UsuarioAutenticado.IdRol > 0))
                 {
                     Mensaje("Estimado usuario usted no tiene ul rol asignado en el sistema, por favor comuniquese con un administrador.", eMessage.Error);
                     return false;

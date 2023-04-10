@@ -22,9 +22,9 @@ namespace BL
         {
             return DAL_RolFormulario.Delete(Entidad);
         }
-        public static List<RolFormularios> List(bool Activo = true)
+        public static List<RolFormularios> List(int IdRol, bool Activo = true)
         {
-            return DAL_RolFormulario.List(Activo);
+            return DAL_RolFormulario.List(IdRol,Activo);
         }
         public static RolFormularios Registro(int IdRegistro)
         {

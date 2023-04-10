@@ -43,11 +43,11 @@ namespace DAL
                 return bd.SaveChanges() > 0;
             }
         }
-        public static List<RolFormularios> List(bool Activo = true)
+        public static List<RolFormularios> List(int IdRol,bool Activo = true)
         {
             using (BDDinamicWeb bd = new BDDinamicWeb())
             {
-                return bd.RolFormularios.Where(a => a.Activo == Activo).ToList();
+                return bd.RolFormularios.Where(a => a.IdRol==IdRol && a.Activo == Activo).ToList();
             }
         }
         public static RolFormularios Registro(int IdRegistro)

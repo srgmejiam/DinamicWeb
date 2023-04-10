@@ -169,5 +169,6 @@ namespace DAL
                 return bd.Usuarios.Where(a => a.UserName.ToLower() == UserName.ToLower()).SingleOrDefault().IntentosFallidos;
             }
         }
+
     }
 }
