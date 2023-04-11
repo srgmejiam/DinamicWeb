@@ -87,6 +87,15 @@ namespace DinamicWeb
         protected global::System.Web.UI.WebControls.Panel panelBtnVolver;
 
         /// <summary>
+        /// Control lnkVolver.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkVolver;
+
+        /// <summary>
         /// Control panelBtnLimpiar.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace DinamicWeb
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelBtnLimpiar;
+
+        /// <summary>
+        /// Control lnkLimpiar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkLimpiar;
 
         /// <summary>
         /// Control panelBtnGuardar.
@@ -105,13 +123,40 @@ namespace DinamicWeb
         protected global::System.Web.UI.WebControls.Panel panelBtnGuardar;
 
         /// <summary>
-        /// Control panelAnular.
+        /// Control lnkGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelAnular;
+        protected global::System.Web.UI.WebControls.LinkButton lnkGuardar;
+
+        /// <summary>
+        /// Control panelBtnAnular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelBtnAnular;
+
+        /// <summary>
+        /// Control lnkAnular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkAnular;
+
+        /// <summary>
+        /// Control HF_IdUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HF_IdUsuario;
 
         /// <summary>
         /// Control gridUsuarios.

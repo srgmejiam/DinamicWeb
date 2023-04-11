@@ -34,5 +34,10 @@ namespace EL
             OficialContable = 8,
             Cliente = 9
         }
+        public enum ePermisos
+        {
+            Escritura = 1,
+            Anular = 2
+        }
     }
 }

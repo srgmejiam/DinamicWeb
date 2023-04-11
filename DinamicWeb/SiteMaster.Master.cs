@@ -94,6 +94,13 @@ namespace DinamicWeb
             try
             {
                 List<RolFormularios> FormulariosUser = (List<RolFormularios>)Session["RolFormulariosGl"];
+
+                if(FormulariosUser == null)
+                {
+                    AbandonarSesion(false);
+                    return false;
+                }
+
                 if (!(FormulariosUser.Count > 0))
                 {
                     AbandonarSesion();
@@ -138,5 +145,10 @@ namespace DinamicWeb
         }
         #endregion
 
+        protected void lnkSalir_Click(object sender, EventArgs e)
+        {
+            AbandonarSesion(false);
+            Response.Redirect("~/Login.aspx");
+        }
     }
 }

@@ -59,6 +59,10 @@
 
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <asp:LinkButton Text="Salir" CssClass="nav-link" aria-current="Inicio" runat="server" ID="lnkSalir" OnClick="lnkSalir_Click"/>
+                        </li>
+
                     </ul>
                 </div>
             </div>

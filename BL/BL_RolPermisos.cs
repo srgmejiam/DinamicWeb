@@ -22,9 +22,9 @@ namespace BL
         {
             return DAL_RolPermisos.Delete(Entidad);
         }
-        public static List<RolPermisos> List(bool Activo = true)
+        public static List<RolPermisos> List(int IdRol, bool Activo = true)
         {
-            return DAL_RolPermisos.List(Activo);
+            return DAL_RolPermisos.List(IdRol,Activo);
         }
         public static RolPermisos Registro(int IdRegistro)
         {

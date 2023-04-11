@@ -78,6 +78,15 @@ namespace DinamicWeb
         protected global::System.Web.UI.WebControls.LinkButton lnkFormulario_4;
 
         /// <summary>
+        /// Control lnkSalir.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkSalir;
+
+        /// <summary>
         /// Control ContentPlaceHolder.
         /// </summary>
         /// <remarks>
