@@ -48,6 +48,7 @@
                             </div>
 
                         </div>
+
                         <%-- Botones --%>
                         <div class="row" style="margin-top: 15px">
                             <asp:Panel runat="server" ID="panelBtnVolver" CssClass="col-md-2">
@@ -63,8 +64,8 @@
                                 <asp:LinkButton Text="Anular" runat="server" CssClass="w-100 btn btn-warning" ForeColor="#000000" />
                             </asp:Panel>
                         </div>
-                        <%-- Grid --%>
 
+                        <%-- Grid --%>
                         <div class="row" style="margin-top: 15px; overflow: scroll">
                             <asp:GridView runat="server"
                                 ID="gridUsuarios"
