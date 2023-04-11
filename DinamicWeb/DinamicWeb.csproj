@@ -74,11 +74,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdministracionUsuarios.aspx" />
     <Content Include="asset\bootstrap-5.3.0\css\bootstrap.min.css" />
     <Content Include="asset\bootstrap-5.3.0\js\bootstrap.bundle.min.js" />
     <Content Include="asset\bootstrap-5.3.0\js\bootstrap.min.js" />
     <Content Include="asset\bootstrap-5.3.0\js\popover.js" />
+    <Content Include="asset\CSS\Grid.css" />
     <Content Include="asset\CSS\Login.css" />
+    <Content Include="asset\CSS\Paginacion.css" />
     <Content Include="asset\CSS\Principal.css" />
     <Content Include="asset\Fontawesome\css\all.min.css" />
     <Content Include="asset\image\1523210170727.png" />
@@ -92,6 +95,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministracionUsuarios.aspx.cs">
+      <DependentUpon>AdministracionUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministracionUsuarios.aspx.designer.cs">
+      <DependentUpon>AdministracionUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

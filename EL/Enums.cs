@@ -17,7 +17,7 @@ namespace EL
         }
         public enum eFormulario
         {
-            Formulario_1 = 1,
+            AdministracionUsuarios = 1,
             Formulario_2 = 2,
             Formulario_3 = 3,
             Formulario_4 = 4

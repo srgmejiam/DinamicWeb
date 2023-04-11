@@ -42,13 +42,13 @@ namespace DinamicWeb
         protected global::System.Web.UI.WebControls.LinkButton lnkInicio;
 
         /// <summary>
-        /// Control lnkFormulario_1.
+        /// Control lnkAdministracionUsuarios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFormulario_1;
+        protected global::System.Web.UI.WebControls.LinkButton lnkAdministracionUsuarios;
 
         /// <summary>
         /// Control lnkFormulario_2.

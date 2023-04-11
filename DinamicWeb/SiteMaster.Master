@@ -10,6 +10,7 @@
     <link href="asset/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="asset/Fontawesome/css/all.min.css" rel="stylesheet" />
     <link href="asset/SweeAlert/sweetalert.min.css" rel="stylesheet" />
+    <link href="asset/CSS/Paginacion.css" rel="stylesheet" />
 
     <%-- Referencias JavaScript --%>
     <script src="asset/JQuery/jquery.min.js"></script>            
@@ -38,7 +39,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <asp:LinkButton Text="Primer Formulario" runat="server" CssClass="dropdown-item" ID="lnkFormulario_1" OnClick="lnkFormulario_1_Click" />
+                                    <asp:LinkButton Text="Administrar Usuarios" runat="server" CssClass="dropdown-item" ID="lnkAdministracionUsuarios" OnClick="lnkAdministracionUsuarios_Click" />
                                 </li>
 
                                 <li>
@@ -66,6 +67,7 @@
 
 
         <div>
+            <asp:ScriptManager runat="server" />
             <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
                 <%-- Aquí se renderizan los formularios --%>
             </asp:ContentPlaceHolder>

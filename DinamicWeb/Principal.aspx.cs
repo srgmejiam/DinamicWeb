@@ -60,16 +60,16 @@ namespace DinamicWeb
         }
         private void VerificarPermisosFormularios(List<RolFormularios> RolFormularios)
         {
-            panelFormulario_1.Visible = false;
+            panelAdministracionUsuarios.Visible = false;
             panelFormulario_2.Visible = false;
             panelFormulario_3.Visible = false;
             panelFormulario_4.Visible = false;
 
             foreach (var RolFormulario in RolFormularios)
             {
-                if (RolFormulario.IdFormulario == (int)eFormulario.Formulario_1)
+                if (RolFormulario.IdFormulario == (int)eFormulario.AdministracionUsuarios)
                 {
-                    panelFormulario_1.Visible = true;
+                    panelAdministracionUsuarios.Visible = true;
                 }
                 if (RolFormulario.IdFormulario == (int)eFormulario.Formulario_2)
                 {
@@ -138,9 +138,9 @@ namespace DinamicWeb
         #endregion
 
         #region Eventos de los controles
-        protected void lnkFormulario_1_Click(object sender, EventArgs e)
+        protected void lnkAdministracionUsuarios_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/AdministracionUsuarios.aspx");
         }
         protected void lnkFormulario_2_Click(object sender, EventArgs e)
         {

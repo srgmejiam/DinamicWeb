@@ -71,6 +71,28 @@ namespace DAL
                 return bd.Usuarios.Where(a => a.Activo == Activo).ToList();
             }
         }
+        public static List<vUsuarios> vUsuarios(bool Activo = true)
+        {
+            using (BDDinamicWeb bd = new BDDinamicWeb())
+            {
+                var Consulta = (from tblUsuarios in bd.Usuarios
+                                join tblRoles in bd.Roles on tblUsuarios.IdRol equals tblRoles.IdRol
+                                where tblUsuarios.Activo == Activo && tblRoles.Activo == Activo
+                                select new vUsuarios
+                                {
+                                    IdUsuario = tblUsuarios.IdUsuario,
+                                    NombreCompleto = tblUsuarios.NombreCompleto,
+                                    Correo = tblUsuarios.Correo,
+                                    UserName = tblUsuarios.UserName,
+                                    Bloqueado = tblUsuarios.Bloqueado,
+                                    CuentaBloqueada= (tblUsuarios.Bloqueado)?"SI":"NO",
+                                    IntentosFallidos = tblUsuarios.IntentosFallidos,
+                                    IdRol = tblUsuarios.IdRol,
+                                    Rol = tblRoles.Rol
+                                }).ToList();
+                return Consulta;
+            }
+        }
         public static Usuarios Registro(int IdRegistro)
         {
             using (BDDinamicWeb bd = new BDDinamicWeb())

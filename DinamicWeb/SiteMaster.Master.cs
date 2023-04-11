@@ -62,16 +62,16 @@ namespace DinamicWeb
         }
         private void VerificarPermisosFormularios(List<RolFormularios>RolFormularios)
         {
-            lnkFormulario_1.Visible = false;
+            lnkAdministracionUsuarios.Visible = false;
             lnkFormulario_2.Visible = false;
             lnkFormulario_3.Visible = false;
             lnkFormulario_4.Visible = false;
 
             foreach (var RolFormulario in RolFormularios)
             {
-                if(RolFormulario.IdFormulario == (int)eFormulario.Formulario_1)
+                if(RolFormulario.IdFormulario == (int)eFormulario.AdministracionUsuarios)
                 {
-                    lnkFormulario_1.Visible=true;
+                    lnkAdministracionUsuarios.Visible=true;
                 }
                 if (RolFormulario.IdFormulario == (int)eFormulario.Formulario_2)
                 {
@@ -120,9 +120,9 @@ namespace DinamicWeb
         {
             Response.Redirect("~/Principal.aspx");
         }
-        protected void lnkFormulario_1_Click(object sender, EventArgs e)
+        protected void lnkAdministracionUsuarios_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Formulario_1.aspx");
+            Response.Redirect("~/AdministracionUsuarios.aspx");
         }
         protected void lnkFormulario_2_Click(object sender, EventArgs e)
         {
