@@ -258,6 +258,29 @@ namespace DinamicWeb
             }
 
         }
+        private void cargarControles(int IdRegistro)
+        {
+            try
+            {
+                vUsuarios vUsuario = BL_Usuarios.vUsuario(IdRegistro);
+                if (vUsuario == null)
+                {
+                    Mensaje("No se encontraron datos para el registro seleccionado", eMessage.Error);
+                    return;
+                }
+                HF_IdUsuario.Value = vUsuario.IdUsuario.ToString();
+                txtNombreCompleto.Text = vUsuario.NombreCompleto;
+                txtCorreo.Text = vUsuario.Correo;
+                txtLogin.Text = vUsuario.UserName;
+                txtContraseña.Text = string.Empty;
+                ddlRol.SelectedValue = vUsuario.IdRol.ToString();
+
+            }
+            catch
+            {
+                Mensaje("Error al Cargar los datos del registro", eMessage.Error);
+            }
+        }
         #endregion
 
         #region Evento de los Controles
@@ -291,8 +314,29 @@ namespace DinamicWeb
         {
 
         }
+
+
         #endregion
 
+        protected void gridUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int RowIndex = gridUsuarios.SelectedRow.RowIndex;
+                int IdRegistro = (int)General.ValidarEnteros(gridUsuarios.DataKeys[RowIndex]["IdUsuario"].ToString());
+                if(!(IdRegistro > 0))
+                {
+                    Mensaje("El ID del registro seleccionado fue cero", eMessage.Error);
+                    return;
+                }
 
+                cargarControles(IdRegistro);
+
+            }
+            catch
+            {
+                Mensaje("Error al seleccionar el registro", eMessage.Error);
+            }
+        }
     }
 }

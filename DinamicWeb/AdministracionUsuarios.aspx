@@ -76,7 +76,7 @@
                                 AutoGenerateColumns="false"
                                 EmptyDataText="Sin Registros para mostrar"
                                 DataKeyNames="IdUsuario,IdRol"
-                                AutoGenerateSelectButton="true">
+                                AutoGenerateSelectButton="true" OnSelectedIndexChanged="gridUsuarios_SelectedIndexChanged" >
                                 <HeaderStyle BackColor="#000066" Font-Bold="true"  ForeColor="White"/>
                                 <SelectedRowStyle BackColor="#cccccc" ForeColor="#666666" />
                                 <AlternatingRowStyle BackColor="White" />    

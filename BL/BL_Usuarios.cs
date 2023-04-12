@@ -35,6 +35,10 @@ namespace BL
         {
             return DAL_Usuarios.vUsuarios(Activo);
         }
+        public static vUsuarios vUsuario(int IdRegistro)
+        {
+            return DAL_Usuarios.vUsuario(IdRegistro);
+        }
         public static Usuarios Registro(int IdRegistro)
         {
             return DAL_Usuarios.Registro(IdRegistro);
