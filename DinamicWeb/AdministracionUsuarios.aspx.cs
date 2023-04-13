@@ -206,8 +206,47 @@ namespace DinamicWeb
 
             return true;
         }
-        private bool validarActualizar()
+        private bool validarActualizar(int IdRegistro)
         {
+            if (string.IsNullOrEmpty(txtNombreCompleto.Text) || string.IsNullOrWhiteSpace(txtNombreCompleto.Text))
+            {
+                Mensaje("Ingrese el nombre completo del usuario", eMessage.Alerta);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtCorreo.Text))
+            {
+                Mensaje("Ingrese el correo del usuario", eMessage.Alerta);
+                return false;
+            }
+            if (!General.CorreoEsValido(txtCorreo.Text))
+            {
+                Mensaje("Ingrese un correo válido", eMessage.Alerta);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtLogin.Text) || string.IsNullOrWhiteSpace(txtLogin.Text))
+            {
+                Mensaje("Ingrese el login del usuario", eMessage.Alerta);
+                return false;
+            }
+
+            if (BL_Usuarios.ExisteUserNameUpdate(txtLogin.Text, IdRegistro))
+            {
+                Mensaje("El Login ya existe en el sistema.", eMessage.Alerta);
+                return false;
+            }
+            if (!(string.IsNullOrEmpty(txtContraseña.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text)))
+            {
+                if (!General.validarComplejidadPassword(txtContraseña.Text))
+                {
+                    Mensaje(Justify("La contraseña debe cumplir con los siguientes requerimientos mínimos: <ul> <li>Longitud Mínima: 8 caracteres</li> <li> Una letra Mayúscula</li> <li> Una letra Minúscula</li> <li> Un número</li></ul>"), eMessage.Alerta, "", true);
+                    return false;
+                }
+            }
+            if (ddlRol.SelectedIndex == 0)
+            {
+                Mensaje("Seleccione el Rol del usuario", eMessage.Alerta);
+                return false;
+            }
 
             return true;
         }
@@ -224,15 +263,39 @@ namespace DinamicWeb
                 }
 
                 int IdRegistro = (int)General.ValidarEnteros(HF_IdUsuario.Value);
+                Usuarios User = new Usuarios();
                 if (IdRegistro > 0)
                 {
                     //Actualizando
+                    if (validarActualizar(IdRegistro))
+                    {
+                        bool UpdatePassword = false;
+                        User.IdUsuario = IdRegistro;
+                        User.NombreCompleto = txtNombreCompleto.Text;
+                        User.Correo = txtCorreo.Text;
+                        User.UserName = txtLogin.Text;
+                        if (!(string.IsNullOrEmpty(txtContraseña.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text)))
+                        {
+                            User.Password = BL_Usuarios.Encrypt(txtContraseña.Text);
+                            UpdatePassword= true;
+                        }
+                        User.IdRol = (int)General.ValidarEnteros(ddlRol.SelectedValue);
+                        User.IdUsuarioActualiza = IdUsuarioSistema;
+                        if (BL_Usuarios.Update(User,UpdatePassword))
+                        {
+                            ResetControles();
+                            cargarGrid();
+                            Mensaje("Registro Actualizado Correctamente", eMessage.Exito);
+                            return;
+                        }
+                        Mensaje("El Registro no se Actualizo Correctamente", eMessage.Error);
+                        return;
+                    }
                     return;
                 }
                 //Insertar
                 if (validarInsertar())
                 {
-                    Usuarios User = new Usuarios();
                     User.NombreCompleto = txtNombreCompleto.Text;
                     User.Correo = txtCorreo.Text;
                     User.UserName = txtLogin.Text;
@@ -251,10 +314,11 @@ namespace DinamicWeb
                     return;
                 }
                 //Mandar Mesaje operacion no realizada
+                Mensaje("No se realizó ninguna operación", eMessage.Error);
             }
             catch
             {
-                //Mandar Mensaje Error
+                Mensaje("Error al guardar el registro", eMessage.Error);
             }
 
         }
@@ -324,7 +388,7 @@ namespace DinamicWeb
             {
                 int RowIndex = gridUsuarios.SelectedRow.RowIndex;
                 int IdRegistro = (int)General.ValidarEnteros(gridUsuarios.DataKeys[RowIndex]["IdUsuario"].ToString());
-                if(!(IdRegistro > 0))
+                if (!(IdRegistro > 0))
                 {
                     Mensaje("El ID del registro seleccionado fue cero", eMessage.Error);
                     return;

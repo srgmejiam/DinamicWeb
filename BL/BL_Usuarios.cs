@@ -15,9 +15,9 @@ namespace BL
             return DAL_Usuarios.Insert(Entidad);
         }
 
-        public static bool Update(Usuarios Entidad)
+        public static bool Update(Usuarios Entidad, bool UpdatePassword)
         {
-            return DAL_Usuarios.Update(Entidad);
+            return DAL_Usuarios.Update(Entidad,UpdatePassword);
         }
         public static bool PasswordUpdate(Usuarios Entidad)
         {
@@ -66,6 +66,10 @@ namespace BL
         public static bool ExisteUserName(string UserName)
         {
             return DAL_Usuarios.ExisteUserName(UserName);
+        }
+        public static bool ExisteUserNameUpdate(string UserName, int IdRegistro)
+        {
+            return DAL_Usuarios.ExisteUserNameUpdate(UserName, IdRegistro);
         }
         public static Usuarios ExisteUsuario_x_UserName(string UserName)
         {

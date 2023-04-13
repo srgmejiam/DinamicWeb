@@ -24,7 +24,7 @@ namespace DAL
                 return Entidad;
             }
         }
-        public static bool Update(Usuarios Entidad)
+        public static bool Update(Usuarios Entidad,bool UpdatePassword)
         {
             using (BDDinamicWeb bd = new BDDinamicWeb())
             {
@@ -32,7 +32,7 @@ namespace DAL
                 RegistroBD.NombreCompleto = Entidad.NombreCompleto;
                 RegistroBD.Correo = Entidad.Correo;
                 RegistroBD.UserName = Entidad.UserName;
-                if (Entidad.Password != null)
+                if (UpdatePassword)
                 {
                     RegistroBD.Password = Entidad.Password;
                 }
@@ -177,6 +177,13 @@ namespace DAL
             using (BDDinamicWeb bd = new BDDinamicWeb())
             {
                 return bd.Usuarios.Where(a => a.UserName.ToLower() == UserName.ToLower()).Count() > 0;
+            }
+        }
+        public static bool ExisteUserNameUpdate(string UserName,int IdRegistro)
+        {
+            using (BDDinamicWeb bd = new BDDinamicWeb())
+            {
+                return bd.Usuarios.Where(a => a.UserName.ToLower() == UserName.ToLower() && a.IdUsuario != IdRegistro).Count() > 0;
             }
         }
         public static Usuarios ExisteUsuario_x_UserName(string UserName)
