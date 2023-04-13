@@ -277,11 +277,11 @@ namespace DinamicWeb
                         if (!(string.IsNullOrEmpty(txtContraseña.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text)))
                         {
                             User.Password = BL_Usuarios.Encrypt(txtContraseña.Text);
-                            UpdatePassword= true;
+                            UpdatePassword = true;
                         }
                         User.IdRol = (int)General.ValidarEnteros(ddlRol.SelectedValue);
                         User.IdUsuarioActualiza = IdUsuarioSistema;
-                        if (BL_Usuarios.Update(User,UpdatePassword))
+                        if (BL_Usuarios.Update(User, UpdatePassword))
                         {
                             ResetControles();
                             cargarGrid();
@@ -378,10 +378,6 @@ namespace DinamicWeb
         {
 
         }
-
-
-        #endregion
-
         protected void gridUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -402,5 +398,8 @@ namespace DinamicWeb
                 Mensaje("Error al seleccionar el registro", eMessage.Error);
             }
         }
+        #endregion
+
+
     }
 }
