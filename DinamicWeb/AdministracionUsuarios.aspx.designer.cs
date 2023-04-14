@@ -150,6 +150,24 @@ namespace DinamicWeb
         protected global::System.Web.UI.WebControls.LinkButton lnkAnular;
 
         /// <summary>
+        /// Control panelBtnBloqueo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelBtnBloqueo;
+
+        /// <summary>
+        /// Control lnkBloqueo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkBloqueo;
+
+        /// <summary>
         /// Control HF_IdUsuario.
         /// </summary>
         /// <remarks>

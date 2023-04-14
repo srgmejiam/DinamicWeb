@@ -108,6 +108,7 @@ namespace DinamicWeb
                 panelBtnLimpiar.Visible = true;
                 panelBtnGuardar.Visible = false;
                 panelBtnAnular.Visible = false;
+                panelBtnBloqueo.Visible = false;
 
                 if (PersmisosUser.Count > 0)
                 {
@@ -121,6 +122,10 @@ namespace DinamicWeb
                         {
                             panelBtnAnular.Visible = true;
                         }
+                        if (PermisoUser.IdPermiso == (int)ePermisos.Bloqueo)
+                        {
+                            panelBtnBloqueo.Visible = true;
+                        }
                     }
                 }
                 return true;
@@ -131,10 +136,15 @@ namespace DinamicWeb
                 return false;
             }
         }
-        private void cargarGrid()
+        private void cargarGrid(bool ResetPage = false)
         {
+            if (ResetPage)
+            {
+                gridUsuarios.PageIndex = 0;
+            }
             gridUsuarios.DataSource = BL_Usuarios.vUsuarios();
             gridUsuarios.DataBind();
+
         }
         private void cargarDDLRoles()
         {
@@ -160,6 +170,7 @@ namespace DinamicWeb
             txtContraseña.Text = string.Empty;
             ddlRol.SelectedIndex = 0;
             HF_IdUsuario.Value = "0";
+            lnkBloqueo.Text = "Bloqueo";
         }
         private bool validarInsertar()
         {
@@ -284,7 +295,7 @@ namespace DinamicWeb
                         if (BL_Usuarios.Update(User, UpdatePassword))
                         {
                             ResetControles();
-                            cargarGrid();
+                            cargarGrid(true);
                             Mensaje("Registro Actualizado Correctamente", eMessage.Exito);
                             return;
                         }
@@ -306,7 +317,7 @@ namespace DinamicWeb
                     if (BL_Usuarios.Insert(User).IdUsuario > 0)
                     {
                         ResetControles();
-                        cargarGrid();
+                        cargarGrid(true);
                         Mensaje("Registro Guardardo Correctamente", eMessage.Exito);
                         return;
                     }
@@ -321,6 +332,71 @@ namespace DinamicWeb
                 Mensaje("Error al guardar el registro", eMessage.Error);
             }
 
+        }
+        private void Anular()
+        {
+            try
+            {
+                int IdUsuarioSistema = (int)General.ValidarEnteros(Session["IdUsuarioGl"]);
+
+                if (!(IdUsuarioSistema > 0))
+                {
+                    Mensaje("Datos del Usuario de sistema no encontrados", eMessage.Alerta);
+                    return;
+                }
+
+                int IdRegistro = (int)General.ValidarEnteros(HF_IdUsuario.Value);
+                Usuarios User = new Usuarios();
+
+                if (IdRegistro > 0)
+                {
+                    User.IdUsuario = IdRegistro;
+                    User.IdUsuarioActualiza = IdUsuarioSistema;
+                    if (BL_Usuarios.Delete(User))
+                    {
+                        ResetControles();
+                        cargarGrid(true);
+                        Mensaje("Registro anulado Correctamente", eMessage.Exito);
+                        return;
+                    }
+                    Mensaje("Error al anular el registro", eMessage.Error);
+                    return;
+                }
+                Mensaje("Asegurese de seleccionar un registro para anular", eMessage.Alerta);
+            }
+            catch
+            {
+                Mensaje("Error al anular el registro", eMessage.Error);
+            }
+        }
+        private void Bloqueo()
+        {
+            try
+            {
+                int IdUsuarioSistema = (int)General.ValidarEnteros(Session["IdUsuarioGl"]);
+
+                if (!(IdUsuarioSistema > 0))
+                {
+                    Mensaje("Datos del Usuario de sistema no encontrados", eMessage.Alerta);
+                    return;
+                }
+                int IdRegistro = (int)General.ValidarEnteros(HF_IdUsuario.Value);
+                bool Bloqueo = (lnkBloqueo.Text=="Desbloquear")?false:true;
+
+                if(BL_Usuarios.BloquearCuentaUsuario(IdRegistro,Bloqueo,IdUsuarioSistema))
+                {
+                    string Operacion = (Bloqueo) ? "Bloqueado":"Desbloqueado";
+                    cargarGrid();
+                    ResetControles();
+                    Mensaje($"Registro {Operacion} Correctamente", eMessage.Exito);
+                    return;
+                }
+                Mensaje("Error al realizar la operación en el registro", eMessage.Error);
+            }
+            catch
+            {
+                Mensaje("Error al realizar la operación en el registro", eMessage.Error);
+            }
         }
         private void cargarControles(int IdRegistro)
         {
@@ -338,7 +414,7 @@ namespace DinamicWeb
                 txtLogin.Text = vUsuario.UserName;
                 txtContraseña.Text = string.Empty;
                 ddlRol.SelectedValue = vUsuario.IdRol.ToString();
-
+                lnkBloqueo.Text = (vUsuario.Bloqueado) ? "Desbloquear" : "Bloquear";
             }
             catch
             {
@@ -364,7 +440,7 @@ namespace DinamicWeb
         }
         protected void lnkVolver_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Principal.aspx");
         }
         protected void lnkLimpiar_Click(object sender, EventArgs e)
         {
@@ -376,7 +452,7 @@ namespace DinamicWeb
         }
         protected void lnkAnular_Click(object sender, EventArgs e)
         {
-
+            Anular();
         }
         protected void gridUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -397,6 +473,16 @@ namespace DinamicWeb
             {
                 Mensaje("Error al seleccionar el registro", eMessage.Error);
             }
+        }
+        protected void gridUsuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridUsuarios.PageIndex = e.NewPageIndex;
+            cargarGrid();
+            ResetControles();
+        }
+        protected void lnkBloqueo_Click(object sender, EventArgs e)
+        {
+            Bloqueo();
         }
         #endregion
 

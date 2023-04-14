@@ -37,7 +37,8 @@ namespace EL
         public enum ePermisos
         {
             Escritura = 1,
-            Anular = 2
+            Anular = 2,
+            Bloqueo = 4
         }
     }
 }

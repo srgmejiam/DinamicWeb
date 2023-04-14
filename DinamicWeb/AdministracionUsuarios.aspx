@@ -63,6 +63,9 @@
                             <asp:Panel runat="server" ID="panelBtnAnular" CssClass="col-md-2" Visible="true">
                                 <asp:LinkButton Text="Anular" runat="server" CssClass="w-100 btn btn-warning" ForeColor="#000000" ID="lnkAnular" OnClick="lnkAnular_Click"/>
                             </asp:Panel>
+                              <asp:Panel runat="server" ID="panelBtnBloqueo" CssClass="col-md-2" Visible="true">
+                                <asp:LinkButton Text="Bloqueo" runat="server" CssClass="w-100 btn btn-danger" ForeColor="#ffffff" ID="lnkBloqueo" OnClick="lnkBloqueo_Click"/>
+                            </asp:Panel>
                         </div>
 
                         <%-- Grid --%>
@@ -71,15 +74,18 @@
                             <asp:GridView runat="server"
                                 ID="gridUsuarios"
                                 AllowPaging="true"
-                                PageSize="5"
+                                PageSize="2"
                                 CssClass="table table-bordered table-hover"
                                 AutoGenerateColumns="false"
                                 EmptyDataText="Sin Registros para mostrar"
                                 DataKeyNames="IdUsuario,IdRol"
-                                AutoGenerateSelectButton="true" OnSelectedIndexChanged="gridUsuarios_SelectedIndexChanged" >
+                                AutoGenerateSelectButton="true" 
+                                OnSelectedIndexChanged="gridUsuarios_SelectedIndexChanged" 
+                                OnPageIndexChanging="gridUsuarios_PageIndexChanging">
                                 <HeaderStyle BackColor="#000066" Font-Bold="true"  ForeColor="White"/>
                                 <SelectedRowStyle BackColor="#cccccc" ForeColor="#666666" />
-                                <AlternatingRowStyle BackColor="White" />    
+                                <AlternatingRowStyle BackColor="White" />   
+                                <PagerStyle CssClass="pagination-ys" />
                                 <Columns>
                                     <asp:BoundField DataField="NombreCompleto" HeaderText="Nombre Completo"/>
                                      <asp:BoundField DataField="Correo" HeaderText="Correo"/>
